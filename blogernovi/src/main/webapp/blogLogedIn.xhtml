@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Welcome</title>
+		
+	<style>
+		.backender{	background-image: url("f1.jpg") ;	}
+	</style>
+</h:head>
+
+<h:body style="background-image: url(resources/f2.jpg) ; background-size: cover ;">
+
+
+
+<h:form	>
+
+
+
+<p:sidebar widgetVar="sidebar1" baseZIndex="10000" style="width: 20%; height: 300px"  >
+    <center style="font-weight:normal" alignment="center">Signed in as:</center>
+    
+    
+    <p:messages id="messages" /> 
+ 
+  <p:panelGrid columns="2" style="background-color: #1f618d"   > 
+  
+  
+  <p:outputLabel for="username" value="Username:" />   
+  <p:outputLabel id="username" value="#{user.username}" />
+
+  <p:outputLabel for="name" value="Name:" />   
+  <p:outputLabel id="name" value="#{user.name}" />
+ 
+   <p:outputLabel for="surname" value="Surname:" />   
+  <p:outputLabel id="surname" value="#{user.surname}" />
+ 
+  </p:panelGrid> 
+  
+   <p:commandButton action="#{userBean.logout}" value="Logout" ></p:commandButton> 
+   
+</p:sidebar >
+<p:commandButton value="Menu"  oncomplete="PF('sidebar1').show()" />
+<p:commandButton value="Create article"	action="createArticle.xhtml?faces-redirect=true" />
+
+    <p:dataTable var="o" value="#{bloggerAppBean.order()}" style="width: 680px; display: block; text-align: center; margin-left: 24.7%" >
+
+        <p:column style="width:16px">
+            <p:rowToggler />
+        </p:column>
+
+
+
+ 
+        <p:column headerText="Posts">
+        	<h:outputText value="#{o.title}" />
+        </p:column>
+
+ 
+        <p:rowExpansion>
+            <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px align= center" >
+
+                <h:outputText value="Id:"  />
+                <h:outputText value="#{o.id}" />
+ 
+                <h:outputText value="Autor:" />
+                <h:outputText value="#{o.user.name}" />
+ 
+                <h:outputText value="Sadrzaj" />
+                <h:outputText value="#{o.content}" />
+ 
+                <h:outputText value="Date" />
+                <h:outputText value="#{o.created}" />
+                
+                
+                <p:commandButton value="List of Comments" onclick="PF('Sdialog2').show();" oncomplete="PF('sidebar1').hide()"   />
+                <h:outputText value="   " />
+                
+  
+                
+                <p:commandButton value="Comment" 	onclick="PF('Sdialog').show(); #{commentBean.getInd(o.id)} " oncomplete="PF('sidebar1').hide()" />
+                <p:commandButton value="Delete"	 />                           
+ 
+            </p:panelGrid>
+        </p:rowExpansion>
+    </p:dataTable>
+
+
+
+</h:form>
+
+
+<p:dialog id="dialogSing" widgetVar="Sdialog" header="Comment" modal="true" appendTo="@(body)">
+				<h:form>
+				<p:panelGrid id="grid" columns="2" cellpadding="5">
+			
+
+<h:form style="color: red" >
+		<h2 > Comment</h2>
+		<table>
+			<tr>
+				<td>Content:</td>
+				<td>
+					<p:inputTextarea value="#{commentBean.comment.text}" label="Content" required="true" id="content"/>
+					<p:message for="content"></p:message>
+				</td>
+			</tr>
+			
+
+
+
+			
+			<h:panelGrid id="grid4" columns="2" cellpadding="5">	
+			<p:outputLabel value="Author:"/>
+			<p:outputLabel value="#{user.name}"/>
+		
+		</h:panelGrid>
+			
+                <h:panelGrid columns="2">
+              
+                    <p:commandButton id="create"
+                        action="#{commentBean.createComment()}"
+                        value="Create" />
+                    <p:messages globalOnly="true"/>
+                    
+                    <p:commandButton value="Back" onclick="window.history.back();"/>
+                </h:panelGrid>
+            
+			
+			
+		</table>
+
+
+
+
+
+
+</h:form>
+					
+	 		    	
+	 		    	
+	 		    	
+				</p:panelGrid> 
+ 		    	</h:form>
+	</p:dialog>
+
+
+<p:dialog id="dialogSing2" widgetVar="Sdialog2" header="List of comments" modal="true" appendTo="@(body)">
+				<h:form>
+				
+			<p:commandButton value="Click to view list of comments" action="comments.xhtml?faces-redirect=true"/>
+			
+						
+ 		    	</h:form>
+	</p:dialog>
+
+
+
+
+
+
+
+
+
+ 
+</h:body>
+</html>

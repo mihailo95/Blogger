@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/templates/default.xhtml"
+xmlns:p="http://primefaces.org/ui">
+<ui:define name="content">
+
+<h:form>
+		<h2> Registration</h2>
+		<h4>Registration form</h4>
+		<table>
+			<tr>
+				<td> Name:</td>
+				<td> 
+					<p:inputText label="Name" id="name" value="#{userBean.user.name}"
+					required="true" title="Unesi ime"> </p:inputText> 
+					<p:message for="name"></p:message>
+				</td>
+			</tr>
+			<tr>
+				<td>Surname:</td>
+				<td>
+					<p:inputText label="Surname" id="sname" value="#{userBean.user.surname}"
+					required="true"/>
+					<p:message for="sname"></p:message>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>Nickname:</td>
+				<td>
+					<p:inputText label="Nickname" id="nickname" value="#{userBean.user.nickname}"
+					required="true"/>
+					<p:message for="nickname"></p:message>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>Username:</td>
+				<td>
+					<p:inputText label="Username" id="username" value="#{userBean.user.username}"
+					required="true"/>
+					<p:message for="username"></p:message>
+				</td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td>
+					<p:inputText label="Password" id="password" value="#{userBean.user.password}"
+					required="true"/>
+					<p:message for="password"></p:message>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>Email:</td>
+				<td>
+				<p:inputText label="Email" id="email" value="#{userBean.user.email}"
+				required="true"/>
+				<p:message for="email"></p:message>
+				</td>
+			</tr>
+			
+			
+				<p>
+                <h:panelGrid columns="2">
+                
+                
+                    <h:commandButton id="register"
+                        action="#{userBean.register()}"
+                        value="Register" styleClass="register" />
+                    <h:messages globalOnly="true"/>
+                </h:panelGrid>
+            </p>
+            
+		</table>
+		</h:form>
+		</ui:define>
+</ui:composition>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Welcome</title>
+		
+	<style>
+		.backender{	background-image: url("f1.jpg") ;	}
+	</style>
+</h:head>
+
+<h:body style="background-image: url(resources/f2.jpg) ; background-size: cover ;">
+
+
+
+<h:form	>
+
+
+
+<p:sidebar widgetVar="sidebar1" baseZIndex="10000" >
+    <center style="font-weight:normal" alignment="center">Signed in as:</center>
+    
+    
+    <p:messages id="messages" /> 
+  
+  <p:panelGrid columns="2" style="background-color: #1f618d"   > 
+  
+  <p:outputLabel for="name" value="Name:" />   
+  <p:outputLabel id="name" value="#{user.name}" />
+  
+  <p:outputLabel for="pass" value="password" />   
+  <p:outputLabel id="pass" value="#{user.password}" />
+  
+ 
+
+  </p:panelGrid> 
+  
+   <p:commandButton action="#{userBean.logout}" value="Logout" ></p:commandButton> 
+    
+</p:sidebar >
+<p:commandButton value="Menu"  oncomplete="PF('sidebar1').show()" />
+<p:commandButton value="Create article"	action="createArticle.xhtml?faces-redirect=true" />
+
+    <p:dataTable var="o" value="#{bloggerAppBean.order()}" style="width: 680px; display: block; text-align: center; margin-left: 24.7%" >
+
+        <p:column style="width:16px">
+            <p:rowToggler />
+        </p:column>
+
+        <p:column headerText="ID">
+            <h:outputText value="#{o.id}" />
+        </p:column>
+
+ 
+        <p:column headerText="Title">
+        
+       
+            <h:outputText value="#{o.title}" />
+        
+        </p:column>
+
+ 
+        <p:rowExpansion>
+            <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px align= center" >
+ 
+                <h:outputText value="Autor:" />
+                <h:outputText value="#{o.user.name}" />
+ 
+                <h:outputText value="Sadrzaj" />
+                <h:outputText value="#{o.content}" />
+ 
+                <h:outputText value="Date" />
+                <h:outputText value="#{o.created}" />
+ 
+            </p:panelGrid>
+        </p:rowExpansion>
+    </p:dataTable>
+
+
+
+</h:form>
+
+
+ 
+</h:body>
+</html>

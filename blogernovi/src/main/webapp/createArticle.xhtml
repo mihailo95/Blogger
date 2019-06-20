@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Create Article</title>
+		
+</h:head>
+
+<center> 
+<h:body style="background-image: url(resources/f2.jpg) ; background-size: cover ;">
+
+<h:form style="color: red" >
+		<h2 > Article</h2>
+		<h4>Article form</h4>
+		<table>
+			<tr>
+				<td> Tittle:</td>
+				<td> 
+					<p:inputText label="Tittle" id="tittle" value="#{articleCreatorBean.newArticle.title}"
+					required="true" title="Unesi ime"> </p:inputText> 
+					<p:message for="tittle"></p:message>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Content:</td>
+				<td>
+					<p:inputTextarea value="#{articleCreatorBean.newArticle.content}" label="Content" required="true" id="content"/>
+					<p:message for="content"></p:message>
+				</td>
+			</tr>
+
+			
+			<h:panelGrid id="grid4" columns="2" cellpadding="5">	
+			<p:outputLabel value="Author:"/>
+			<p:outputLabel value="#{user.name}"/>
+		
+		</h:panelGrid>
+			
+                <h:panelGrid columns="2">
+              
+                    <p:commandButton id="create"
+                        action="#{articleCreatorBean.createArticle()}"
+                        value="Create" />
+                    <p:messages globalOnly="true"/>
+                    
+                    <p:commandButton value="Back" onclick="window.history.back();"/>
+                </h:panelGrid>
+            
+			
+			
+		</table>
+
+
+
+
+
+
+</h:form>
+</h:body>
+</center>
+
+
+
+</html>

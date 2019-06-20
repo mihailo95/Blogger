@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Welcome</title>
+		
+	<style>
+		.backender{	background-image: url("f1.jpg") ;	}
+	</style>
+</h:head>
+
+<h:body style="background-image: url(resources/f2.jpg) ; background-size: cover ;">
+
+
+<h:form	>
+
+<p:commandButton value="Menu"  oncomplete="PF('sidebar1').show()" />
+<p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server"/>
+
+
+
+
+    <p:dataTable var="o" value="#{bloggerAppBean.order()}" style="width: 680px; display: block; text-align: center; margin-left: 24.7%" >
+
+        <p:column style="width:16px">
+            <p:rowToggler />
+        </p:column>
+
+        <p:column headerText="ID">
+            <h:outputText value="#{o.id}" />
+        </p:column>
+
+ 
+        <p:column headerText="Title">
+        
+       
+            <h:outputText value="#{o.title}" />
+        
+        </p:column>
+
+ 
+        <p:rowExpansion>
+            <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px align= center" >
+ 
+                <h:outputText value="Autor:" />
+                <h:outputText value="#{o.user.name}" />
+ 
+                <h:outputText value="Sadrzaj" />
+                <h:outputText value="#{o.content}" />
+ 
+                <h:outputText value="Date" />
+                <h:outputText value="#{o.created}" />
+ 
+            </p:panelGrid>
+        </p:rowExpansion>
+    </p:dataTable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p:sidebar widgetVar="sidebar1" baseZIndex="10000" style="opacity : 0.8; background-color: gray" >
+    <center style="font-weight:normal" alignment="center">Sign in</center>
+        
+    <p:messages id="messages" /> 
+  
+  <p:panelGrid columns="2" > 
+  
+  <p:outputLabel for="name" value="Name:" />   
+  <p:inputText id="name" value="#{userBean.name}" /> 
+  
+  <p:outputLabel for="password" value="Password:" /> 
+  <p:password id="password" value="#{userBean.password}" /> 
+  
+  <div>
+  		<p:commandButton value="Login" action="#{userBean.log()}"	 styleClass="btn btn-primary" />
+  		<h6>You don't have account?</h6><h6> Register for free!</h6>
+  		<p:commandButton value="Sign up"  onclick="PF('Sdialog').show();" oncomplete="PF('sidebar1').hide()"   />
+  		
+                    </div>
+  </p:panelGrid> 
+    
+</p:sidebar >
+
+
+
+
+</h:form>
+
+
+
+<p:dialog id="dialogSing" widgetVar="Sdialog" header="Sign up" modal="true" appendTo="@(body)">
+				<h:form>
+				<p:panelGrid id="grid" columns="2" cellpadding="5">
+			
+					<p:outputLabel for="name" value="Name:" />
+		       		<p:inputText id="name" value="#{userBean.user.name}" required="true" />
+		       		
+		       		
+					<p:outputLabel for="surname" value="Surname" />
+					<p:inputText id="surname" value="#{userBean.user.surname}" required="false"/>
+					
+					
+					<p:outputLabel for="nickname" value="Nickname" />
+					<p:inputText id="nickname" value="#{userBean.user.nickname}" required="false"/>
+					 
+					<p:outputLabel for="username" value="Username" />
+					<p:inputText id="username" value="#{userBean.user.username}" required="false"/>
+					 
+					<p:outputLabel for="email" value="Email" />
+					<p:inputText id="email" value="#{userBean.user.email}" required="false"/>
+					
+					<p:outputLabel for="pass" value="Password" />
+					<p:password id="pass" value="#{userBean.user.password}" required="true"/>
+					
+	 		    	
+	 		    	<p:commandButton value="Register!" action="#{userBean.register()}"  />
+	 		    	
+				</p:panelGrid> 
+ 		    	</h:form>
+			</p:dialog>
+	
+
+	
+</h:body>
+</html>

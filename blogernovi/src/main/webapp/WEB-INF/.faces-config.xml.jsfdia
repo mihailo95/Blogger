@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#blog.xhtml" PATH="/blog.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#blogLogedIn.xhtml" PATH="/blogLogedIn.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#blogLogedIn.xhtml:0" NAME="item"
+   PATH="/blogLogedIn.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="blog::#blog.xhtml" NAME="output"
+    PATH="/blog.xhtml" TARGET="rules:#blog.xhtml" TITLE="blog" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>
